@@ -1,11 +1,34 @@
-const button = document.getElementById("submit1");
-const radioButtons = document.querySelectorAll("input[name='choice']");
-
-button.addEventListener("click", () => {
-    const selectedRadio = Array.from(radioButtons).find(radio => radio.checked);
-    if (selectedRadio) {
-        document.getElementById("custom-div").innerHTML = "The choice you chose was: " + selectedRadio.value;
+document.getElementById("submit1").addEventListener("click", function() {
+    // Get the selected radio button
+    const choices = document.getElementsByName("choice");
+    let selectedChoice;
+    
+    for (const choice of choices) {
+        if (choice.checked) {
+            selectedChoice = choice.value;
+            break;
+        }
+    }
+    
+    const customDiv = document.getElementById("custom-div");
+    if (selectedChoice) {
+        switch (selectedChoice) {
+            case 'a':
+                customDiv.innerHTML = "choice a";
+                break;
+            case 'b':
+                customDiv.innerHTML = "choice b";
+                break;
+            case 'c':
+                customDiv.innerHTML = "choice c";
+                break;
+            case 'd':
+                customDiv.innerHTML = "choice d";
+                break;
+            default:
+                customDiv.innerHTML = "<p>Please select an option.</p>";
+        }
     } else {
-        document.getElementById("custom-div").innerHTML = "No choice selected.";
+        customDiv.innerHTML = "<p>Please select an option.</p>";
     }
 });
