@@ -1,34 +1,26 @@
-document.getElementById("submit1").addEventListener("click", function() {
-    // Get the selected radio button
-    const choices = document.getElementsByName("choice");
-    let selectedChoice;
-    
-    for (const choice of choices) {
-        if (choice.checked) {
-            selectedChoice = choice.value;
-            break;
+let btn = document.getElementById("myBtn")
+btn.addEventListener("click",function(){
+    myFunc(myText.value);
+})
+
+ function myFunc(myValue){
+    let myRadio = document.getElementsByName("rg");
+    let myBox = document.getElementsByName("cb");
+    let price = 0;
+    let toppings="";
+
+    for(let i = 0; i<myRadio.length;i++){
+        if(myRadio[i].checked){
+            price += Number(myRadio[i].value);
         }
     }
-    
-    const customDiv = document.getElementById("custom-div");
-    if (selectedChoice) {
-        switch (selectedChoice) {
-            case 'a':
-                customDiv.innerHTML = "choice a";
-                break;
-            case 'b':
-                customDiv.innerHTML = "choice b";
-                break;
-            case 'c':
-                customDiv.innerHTML = "choice c";
-                break;
-            case 'd':
-                customDiv.innerHTML = "choice d";
-                break;
-            default:
-                customDiv.innerHTML = "<p>Please select an option.</p>";
+    for(let A = 0; A<myBox.length;A++){
+        if(myBox[A].checked){
+            price +=1.5;
+            toppings += myBox[A].value + ", ";
         }
-    } else {
-        customDiv.innerHTML = "<p>Please select an option.</p>";
     }
-});
+
+    myParagraph.innerHTML = "hi " + myValue + "! " + "price: "+price.toFixed(2)+", "+"toppings: "+toppings;
+
+ }
